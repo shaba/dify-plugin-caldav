@@ -1,0 +1,40 @@
+identity:
+  name: list_events
+  author: shaba
+  label:
+    en_US: List events
+description:
+  human:
+    en_US: List events from a calendar, optionally within a time range
+  llm: List calendar events (VEVENT) from a given CalDAV calendar, optionally limited to a start/end time range. Returns each event's start and end time, summary, location and status. Use start and end to narrow the period (e.g. this week).
+parameters:
+  - name: calendar
+    type: string
+    required: true
+    label:
+      en_US: Calendar
+    human_description:
+      en_US: Calendar display name or URL (see list_calendars)
+    llm_description: The calendar to read from, given as its display name or full URL as returned by list_calendars
+    form: llm
+  - name: start
+    type: string
+    required: false
+    label:
+      en_US: Start time
+    human_description:
+      en_US: Lower bound, e.g. 2026-01-01 or 2026-01-01T00:00:00+03:00. A datetime without an explicit timezone/offset is treated as UTC.
+    llm_description: Only include events at or after this date/time. A datetime without an explicit timezone offset is interpreted as UTC, so pass an offset (e.g. 2026-01-01T00:00:00+03:00) to avoid a shift. Optional.
+    form: llm
+  - name: end
+    type: string
+    required: false
+    label:
+      en_US: End time
+    human_description:
+      en_US: Upper bound, e.g. 2026-01-31 or 2026-01-31T23:59:00+03:00. A datetime without an explicit timezone/offset is treated as UTC.
+    llm_description: Only include events before this date/time. A datetime without an explicit timezone offset is interpreted as UTC, so pass an offset (e.g. 2026-01-31T23:59:00+03:00) to avoid a shift. Optional.
+    form: llm
+extra:
+  python:
+    source: tools/list_events.py

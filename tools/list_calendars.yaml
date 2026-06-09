@@ -1,0 +1,13 @@
+identity:
+  name: list_calendars
+  author: shaba
+  label:
+    en_US: List calendars
+description:
+  human:
+    en_US: List the calendars (and task lists) available on the CalDAV account
+  llm: List all calendars and task lists available on the configured CalDAV account, returning each calendar's display name, URL and supported component types (VEVENT/VTODO). Use this first to discover which calendar name or URL to pass to other tools.
+parameters: []
+extra:
+  python:
+    source: tools/list_calendars.py

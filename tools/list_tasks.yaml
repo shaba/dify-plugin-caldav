@@ -1,0 +1,32 @@
+identity:
+  name: list_tasks
+  author: shaba
+  label:
+    en_US: List tasks
+description:
+  human:
+    en_US: List tasks (VTODO) from a calendar, optionally only incomplete ones
+  llm: List tasks (VTODO items) from a CalDAV calendar or task list. Returns each task's summary, due date, status and completion. Set only_incomplete to true to hide tasks that are already done.
+parameters:
+  - name: calendar
+    type: string
+    required: true
+    label:
+      en_US: Calendar
+    human_description:
+      en_US: Calendar/task list display name or URL (see list_calendars)
+    llm_description: The calendar or task list to read tasks from, given as its display name or full URL as returned by list_calendars
+    form: llm
+  - name: only_incomplete
+    type: boolean
+    required: false
+    default: false
+    label:
+      en_US: Only incomplete
+    human_description:
+      en_US: Show only tasks that are not yet completed
+    llm_description: When true, only tasks that are not yet completed are returned
+    form: llm
+extra:
+  python:
+    source: tools/list_tasks.py

@@ -1,0 +1,67 @@
+identity:
+  name: create_event
+  author: shaba
+  label:
+    en_US: Create event
+description:
+  human:
+    en_US: Create a new event in a calendar
+  llm: Create a new calendar event (VEVENT) in a CalDAV calendar with a summary, start and end time, and optional description and location. Requires write access on the calendar.
+parameters:
+  - name: calendar
+    type: string
+    required: true
+    label:
+      en_US: Calendar
+    human_description:
+      en_US: Calendar display name or URL (see list_calendars)
+    llm_description: The calendar to create the event in, given as its display name or full URL as returned by list_calendars
+    form: llm
+  - name: summary
+    type: string
+    required: true
+    label:
+      en_US: Summary
+    human_description:
+      en_US: Event title/summary
+    llm_description: The title or summary of the event
+    form: llm
+  - name: start
+    type: string
+    required: true
+    label:
+      en_US: Start time
+    human_description:
+      en_US: Start, e.g. 2026-01-01T10:00:00+03:00 or 2026-01-01. A datetime without an explicit timezone/offset is treated as UTC.
+    llm_description: Event start date/time. A datetime without an explicit timezone offset is interpreted as UTC, so pass an offset (e.g. 2026-01-01T10:00:00+03:00) to avoid a shift; a bare date (e.g. 2026-01-01) means an all-day event.
+    form: llm
+  - name: end
+    type: string
+    required: true
+    label:
+      en_US: End time
+    human_description:
+      en_US: End, e.g. 2026-01-01T11:00:00+03:00 (or 2026-01-01 for an all-day event). A datetime without an explicit timezone/offset is treated as UTC.
+    llm_description: Event end date/time, must be after start. A datetime without an explicit timezone offset is interpreted as UTC, so pass an offset (e.g. 2026-01-01T11:00:00+03:00) to avoid a shift. If BOTH start and end are bare dates (e.g. 2026-01-01) the event is created as an all-day event; use the same date for start and end for a single all-day day.
+    form: llm
+  - name: description
+    type: string
+    required: false
+    label:
+      en_US: Description
+    human_description:
+      en_US: Optional event description/notes
+    llm_description: Optional detailed description or notes for the event
+    form: llm
+  - name: location
+    type: string
+    required: false
+    label:
+      en_US: Location
+    human_description:
+      en_US: Optional location (address, room, link)
+    llm_description: Optional event location such as an address, meeting room or link
+    form: llm
+extra:
+  python:
+    source: tools/create_event.py

@@ -1,0 +1,47 @@
+identity:
+  author: shaba
+  name: caldav
+  label:
+    en_US: CalDAV
+  description:
+    en_US: CalDAV — read and create calendar events and tasks on any CalDAV server
+  icon: icon.svg
+  tags:
+    - productivity
+credentials_for_provider:
+  base_url:
+    type: text-input
+    required: true
+    label:
+      en_US: CalDAV URL
+    placeholder:
+      en_US: https://example.com/remote.php/dav/
+    help:
+      en_US: Base CalDAV URL of your server (e.g. Nextcloud https://example.com/remote.php/dav/)
+    url: https://example.com/remote.php/dav/
+  username:
+    type: text-input
+    required: true
+    label:
+      en_US: Username
+    placeholder:
+      en_US: alice
+    help:
+      en_US: CalDAV account user name
+  password:
+    type: secret-input
+    required: true
+    label:
+      en_US: Password
+    help:
+      en_US: CalDAV account password or app password
+tools:
+  - tools/list_calendars.yaml
+  - tools/list_events.yaml
+  - tools/search_events.yaml
+  - tools/list_tasks.yaml
+  - tools/create_event.yaml
+  - tools/create_task.yaml
+extra:
+  python:
+    source: provider/caldav.py

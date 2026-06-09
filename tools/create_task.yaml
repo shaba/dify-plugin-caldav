@@ -1,0 +1,49 @@
+identity:
+  name: create_task
+  author: shaba
+  label:
+    en_US: Create task
+description:
+  human:
+    en_US: Create a new task (VTODO) in a calendar/task list
+  llm: Create a new task (VTODO item) in a CalDAV calendar or task list with a summary and optional due date and description. Requires write access on the calendar.
+parameters:
+  - name: calendar
+    type: string
+    required: true
+    label:
+      en_US: Calendar
+    human_description:
+      en_US: Calendar/task list display name or URL (see list_calendars)
+    llm_description: The calendar or task list to create the task in, given as its display name or full URL as returned by list_calendars
+    form: llm
+  - name: summary
+    type: string
+    required: true
+    label:
+      en_US: Summary
+    human_description:
+      en_US: Task title/summary
+    llm_description: The title or summary of the task
+    form: llm
+  - name: due
+    type: string
+    required: false
+    label:
+      en_US: Due date
+    human_description:
+      en_US: Optional due date, e.g. 2026-01-15 or 2026-01-15T18:00:00+03:00. A datetime without an explicit timezone/offset is treated as UTC.
+    llm_description: Optional due date or date-time for the task. A datetime without an explicit timezone offset is interpreted as UTC, so pass an offset (e.g. 2026-01-15T18:00:00+03:00) to avoid a shift; a bare date (e.g. 2026-01-15) is an all-day due date.
+    form: llm
+  - name: description
+    type: string
+    required: false
+    label:
+      en_US: Description
+    human_description:
+      en_US: Optional task description/notes
+    llm_description: Optional detailed description or notes for the task
+    form: llm
+extra:
+  python:
+    source: tools/create_task.py

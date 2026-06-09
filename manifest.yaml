@@ -1,0 +1,33 @@
+version: 0.0.1
+type: plugin
+author: shaba
+name: caldav
+repo: https://github.com/shaba/dify-plugin-caldav
+label:
+  en_US: CalDAV
+description:
+  en_US: "Read and create calendar events and tasks on any CalDAV server (Nextcloud, Radicale, …)."
+icon: icon.svg
+resource:
+  memory: 268435456
+  permission:
+    model:
+      enabled: false
+    node:
+      enabled: false
+plugins:
+  tools:
+    - provider/caldav.yaml
+meta:
+  version: 0.0.1
+  arch:
+    - amd64
+    - arm64
+  runner:
+    language: python
+    version: "3.12"
+    entrypoint: main
+  minimum_dify_version: 1.0.0
+tags:
+  - productivity
+created_at: "2026-06-10T00:00:00Z"
